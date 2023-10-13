@@ -45,6 +45,7 @@ Application to upload racing laptimes and get feedback statistics.
 
 ## Technologies
 Currently in the works, might change.
+- Python : gui application.
 - Vue.js 3: Frontend JavaScript framework for building the user interface.
 - Gorilla WebSocket: Backend library for implementing WebSocket communication such as listing active clients and messaging.
 - Golang: Handle server-side logic and provide the necessary functionality and data to support the Vue.js frontend application.
