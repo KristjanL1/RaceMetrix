@@ -16,7 +16,8 @@ Application to upload racing laptimes and get feedback statistics.
 
 
 ## Features
-- Currently no features. Yet...
+- Upload your laptimes with track name.
+- Display Lap time with track it was driven on.
 
 ## Future features
 - Upload laptimes
