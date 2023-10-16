@@ -28,7 +28,8 @@ def create_database():
         cursor = conn.cursor()
         cursor.execute('''CREATE TABLE IF NOT EXISTS lap_times (
                             track_name TEXT,
-                            lap_time TEXT
+                            lap_time TEXT,
+                            driver_name TEXT
                         )''')
         conn.commit()
         conn.close()
@@ -36,14 +37,14 @@ def create_database():
     except Exception as e:
         print("laptime_db: Error creating the database:", str(e))
 
-def save_lap_time_to_db(track_name, lap_time):
+def save_lap_time_to_db(track_name, lap_time, driver_name):
     # Ensure the database exists
     init_database()
 
-    print("laptime_db: Save_lap_time to db in laptime_db", track_name, lap_time)
+    print("laptime_db: Save_lap_time to db in laptime_db", driver_name, track_name, lap_time)
     conn = sqlite3.connect(get_db_path())
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO lap_times (track_name, lap_time) VALUES (?, ?)", (track_name, lap_time))
+    cursor.execute("INSERT INTO lap_times ( track_name, lap_time, driver_name) VALUES (?, ?, ?)", (track_name, lap_time, driver_name))
     conn.commit()
     conn.close()
     print("laptime_db: Laptimes inserted into db")
@@ -54,7 +55,7 @@ def get_lap_times_from_db():
     print("laptime_db: Getting laptimes from db")
     conn = sqlite3.connect(get_db_path())
     cursor = conn.cursor()
-    cursor.execute("SELECT track_name, lap_time FROM lap_times")
+    cursor.execute("SELECT track_name, lap_time, driver_name TEXT FROM lap_times")
     lap_times = cursor.fetchall()
     conn.close()
     print("laptime_db: Recieved lap times:", lap_times)
